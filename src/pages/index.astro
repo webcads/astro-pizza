@@ -6,157 +6,164 @@ import MySiteLayout from '../layouts/Layout.astro';
 const response = await fetch('http://localhost:3001/api/productos');
 const productos = await response.json();
 ---
-<MySiteLayout title="Astro Pizzeria">
-	
-	<img src="/public/bg.jpg" style="width: 100%; object-fit: cover;" alt="">
-	
-	<h1>Inicia Sesión</h1>
-	<p>¡Para poder explorar nuestro menú de funcionalidades de administrador!</p>
-	
-	<div id="login-container" class="login-container">
 
-	  <form id="loginForm">
-		<label for="username">Usuario:</label>
-		<input type="text" id="username" name="username" required />
-		
-		<label for="password">Contraseña:</label>
-		<input type="password" id="password" name="password" required />
-		
-		<button type="submit">Iniciar Sesión</button>
-	  </form>
-	  <p id="error-message" class="error" style="display: none;">Credenciales incorrectas. Intenta nuevamente.</p>
-	</div>
-  
-	<div id="menu-container" class="menu-links" style="display: none;">
-		
-	  <p>Hola Admin! que funcion deseas realizar:</p>
-	  <nav style="display: flex; flex-direction: column;">
-		<ul style="display: flex; flex-direction: column; justify-items: start; align-items: center;">
-		  <li><a href="/tablas">a. Visualizar Conjunto de Tablas</a></li>
-		  <li><a href="/funciones">b. Visualizar Funciones del Usuario</a></li>
-		  <li><a href="/procedimientos">c. Visualizar Procedimientos del Usuario</a></li>
-		  <li><a href="/disparadores">d. Visualizar Disparadores del Usuario</a></li>
-		  <li><a href="/vistas">e. Visualizar Vistas del Usuario</a></li>
-		  <li><a href="/tabla-filtro">f. Filtro de Tablas</a></li>
-		</ul>
-	  </nav>
-	  <Pizzas></Pizzas>
-	</div>
-  
-  </MySiteLayout>
-  
-  <script is:inline>
-	document.addEventListener('DOMContentLoaded', () => {
-	  const loginForm = document.getElementById('loginForm');
-	  const errorMessage = document.getElementById('error-message');
-	  const loginContainer = document.getElementById('login-container');
-	  const menuContainer = document.getElementById('menu-container');
-  
-	  loginForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-  
-		const username = document.getElementById('username').value;
-		const password = document.getElementById('password').value;
-  
-		// Verificar credenciales
-		if (username === 'system' && password === 'oracle') {
-		  // Si las credenciales son correctas
-		  loginContainer.style.display = 'none'; // Ocultar el formulario de login
-		  menuContainer.style.display = 'block'; // Mostrar el menú
-		  errorMessage.style.display = 'none'; // Ocultar el mensaje de error
-		} else {
-		  // Si las credenciales son incorrectas
-		  errorMessage.style.display = 'block'; // Mostrar el mensaje de error
-		}
-	  });
-	});
-  </script>
-  
-  <style>
-	body {
-	  width: 100%;
-	}
-  
-	h1 {
-	  text-align: center;
-	  color: #ff6347;
-	}
-  
-	.pizza-grid {
-	  display: grid;
-	  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	  gap: 20px;
-	  padding: 20px;
-	}
-  
-	p {
-	  text-align: center;
-	  font-size: 1.1rem;
-	  margin-bottom: 20px;
-	  color: #333;
-	}
-  
-	nav {
-	  text-align: center;
-	  margin-bottom: 20px;
-	}
-  
-	nav ul {
-	  list-style: none;
-	  padding: 0;
-	}
-  
-	nav li {
-	  display: inline;
-	  margin: 0 10px;
-	}
-  
-	nav a {
-	  color: #ff6347;
-	  text-decoration: none;
-	  font-weight: bold;
-	}
-  
-	nav a:hover {
-	  text-decoration: underline;
-	}
-  
-	.login-container {
-	  text-align: center;
-	  margin-top: 40px;
-	}
-  
-	.login-container input {
-	  padding: 10px;
-	  margin: 10px;
-	  border-radius: 5px;
-	  border: 1px solid #ccc;
-	  width: 100%;
-	  max-width: 300px;
-	}
-  
-	.login-container button {
-	  padding: 10px 20px;
-	  background-color: #ff6347;
-	  color: white;
-	  border: none;
-	  border-radius: 5px;
-	  cursor: pointer;
-	}
-  
-	.login-container button:hover {
-	  background-color: #e53e3e;
-	}
-  
-	.menu-links {
-	  text-align: center;
-	  margin-top: 20px;
-	}
-  
-	.error {
-	  color: red;
-	  font-size: 1.2rem;
-	  margin-top: 10px;
-	}
-  </style>
-  
+<MySiteLayout title="Astro Pizzeria">
+  <img src="/public/bg.jpg" style="width: 100%; object-fit: cover;" alt="">
+
+  <h1>Inicia Sesión</h1>
+  <p>¡Para poder explorar nuestro menú de funcionalidades de administrador!</p>
+
+  <div id="login-container" class="login-container">
+
+    <form id="loginForm">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required />
+      
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required />
+      
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    <p id="error-message" class="error" style="display: none;">Credenciales incorrectas. Intenta nuevamente.</p>
+  </div>
+
+  <div id="menu-container" class="menu-links" style="display: none;">
+    <p>Hola Admin! ¿Qué función deseas realizar?</p>
+    <nav style="display: flex; flex-direction: column;">
+      <ul style="display: flex; flex-direction: column; justify-items: start; align-items: center;">
+        <li><a href="/tablas">a. Visualizar Conjunto de Tablas</a></li>
+        <li><a href="/funciones">b. Visualizar Funciones del Usuario</a></li>
+        <li><a href="/procedimientos">c. Visualizar Procedimientos del Usuario</a></li>
+        <li><a href="/disparadores">d. Visualizar Disparadores del Usuario</a></li>
+        <li><a href="/vistas">e. Visualizar Vistas del Usuario</a></li>
+        <li><a href="/tabla-filtro">f. Filtro de Tablas</a></li>
+      </ul>
+    </nav>
+    <Pizzas></Pizzas>
+  </div>
+
+</MySiteLayout>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  const errorMessage = document.getElementById('error-message');
+  const loginContainer = document.getElementById('login-container');
+  const menuContainer = document.getElementById('menu-container');
+
+  // Verificar si el usuario ya está autenticado
+  if(localStorage.getItem('authenticated') === 'true') {
+    loginContainer.style.display = 'none'; // Ocultar el formulario de login
+    menuContainer.style.display = 'block'; // Mostrar el menú
+  }
+
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Verificar credenciales
+    if (username === 'system' && password === 'oracle') {
+      // Si las credenciales son correctas
+      loginContainer.style.display = 'none'; // Ocultar el formulario de login
+      menuContainer.style.display = 'block'; // Mostrar el menú
+      errorMessage.style.display = 'none'; // Ocultar el mensaje de error
+
+      // Guardar la sesión
+      localStorage.setItem('authenticated', 'true');
+    } else {
+      // Si las credenciales son incorrectas
+      errorMessage.style.display = 'block'; // Mostrar el mensaje de error
+    }
+  });
+});
+</script>
+
+<style>
+  body {
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+    color: #ff6347;
+  }
+
+  .pizza-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  nav {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  nav li {
+    display: inline;
+    margin: 0 10px;
+  }
+
+  nav a {
+    color: #ff6347;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  .login-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .login-container input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .login-container button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .login-container button:hover {
+    background-color: #e53e3e;
+  }
+
+  .menu-links {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .error {
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+</style>
