@@ -1,0 +1,61 @@
+---
+// Propiedades del componente
+const { id, nombre, descripcion, precio, precioGrande } = Astro.props;
+---
+
+<div class="pizza-card">
+    <h3>{nombre}</h3>
+    <p>{descripcion}</p>
+    <div class="prices">
+        <span>Pequeña: ${precio}</span>
+        <span>Grande: ${precioGrande}</span>
+    </div>
+    <button class="order-button">Ordenar</button>
+</div>
+
+<style>
+    .pizza-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 16px;
+        background-color: #fff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        max-width: 300px;
+    }
+
+    .pizza-card:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        color: #ff6347;
+    }
+
+    p {
+        color: #555;
+        margin: 8px 0;
+    }
+
+    .prices {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+    }
+
+    .order-button {
+        margin-top: 12px;
+        padding: 8px 16px;
+        background-color: #ff6347;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .order-button:hover {
+        background-color: #e5533d;
+    }
+</style>

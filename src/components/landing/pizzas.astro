@@ -1,0 +1,49 @@
+---
+import PizzaCard from '../pizzaCard.astro';
+import MySiteLayout from '../../layouts/Layout.astro';
+// Obtener la lista de pizzas de la API
+const response = await fetch('http://localhost:3001/api/productos');
+const productos = await response.json();
+---
+
+<!-- <img src="/public/bg.jpg"  style="width: 100%; object-fit: cover;" alt=""> -->
+<img src="https://img.freepik.com/premium-photo/slice-pepperoni-pizza-is-floating-space-pizza-is-surrounded-by-stars-background-is-deep-blue-color_995663-697.jpg?w=826"  style="width: 100%; object-fit: cover;" alt="">
+<h1>Menu</h1>
+<p>¡Explora nuestro menú y disfruta de nuestras deliciosas pizzas!</p>
+
+<div class="pizza-grid">
+    {productos.map((producto) => (
+        <PizzaCard
+            id={producto[0]}
+            nombre={producto[1]}
+            descripcion={producto[2]}
+            precio={producto[3]}
+            precioGrande={producto[4]}
+        />
+    ))}
+</div>
+
+
+<style>
+    body{
+        width: 100%;
+    }
+    h1 {
+        text-align: center;
+        color: #ff6347;
+    }
+
+    .pizza-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+</style>

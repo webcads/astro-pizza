@@ -1,16 +1,89 @@
 ---
+import Pizzas from '../components/landing/pizzas.astro';
+import PizzaCard from '../components/pizzaCard.astro';
+import MySiteLayout from '../layouts/Layout.astro';
 
+const response = await fetch('http://localhost:3001/api/productos');
+const productos = await response.json();
 ---
+<MySiteLayout title="Astro Pizzeria">
+	<img src="/public/bg.jpg"  style="width: 100%; object-fit: cover;" alt="">
+	<h1>Bienvenido a Astro Pizzeria</h1>
+	<p>¡Explora nuestro menú y disfruta de nuestras deliciosas pizzas!</p>
+	<nav style="display: flex; flex-direction: column;">
+		<ul style="display: flex; flex-direction: column; justify-items: start; align-items: center;">
+		  <li><a href="/tablas">a. Visualizar Conjunto de Tablas</a></li>
+		  <li><a href="/funciones">b. Visualizar Funciones del Usuario</a></li>
+		  <li><a href="/procedimientos">c. Visualizar Procedimientos del Usuario</a></li>
+		  <li><a href="/disparadores">d. Visualizar Disparadores del Usuario</a></li>
+		  <li><a href="/vistas">e. Visualizar Vistas del Usuario</a></li>
+		  <li><a href="/tabla-filtro">f. Filtro de Tablas</a></li>
+		</ul>
+	  </nav>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+	<Pizzas></Pizzas>
+	</MySiteLayout>
+	
+	<style>
+		body{
+			width: 100%;
+		}
+		h1 {
+			text-align: center;
+			color: #ff6347;
+		}
+	
+		.pizza-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 20px;
+			padding: 20px;
+		}
+	
+		p {
+			text-align: center;
+			font-size: 1.1rem;
+			margin-bottom: 20px;
+			color: #333;
+		}
+		nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav li {
+      display: inline;
+      margin: 0 10px;
+    }
+    nav a {
+      color: #ff6347;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    body {
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #ff6347;
+    }
+    .pizza-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    p {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+	</style>
+	

@@ -1,0 +1,60 @@
+---
+import MySiteLayout from '../layouts/Layout.astro';
+
+let tablas = {};
+
+try {
+  const response = await fetch('http://localhost:3001/api/tablas');
+  if (response.ok) {
+    tablas = await response.json();
+  } else {
+    console.error("Error en la respuesta de la API:", response.status);
+  }
+} catch (error) {
+  console.error("Error al conectar con la API:", error);
+}
+---
+
+<MySiteLayout title="Tablas del Usuario">
+  <h1>Tablas del Usuario</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre de Tabla</th>
+        <th>Nombre de Columna</th>
+        <th>Tipo de Dato</th>
+        <th>Acepta Nulos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {Object.keys(tablas).map((tableName) => (
+        tablas[tableName].map((column) => (
+          <tr key={`${tableName}-${column.column_name}`}>
+            <td>{tableName}</td>
+            <td>{column.column_name}</td>
+            <td>{column.data_type}</td>
+            <td>{column.nullable === 'Sí' ? 'Sí' : 'No'}</td>
+          </tr>
+        ))
+      ))}
+    </tbody>
+  </table>
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #ff6347;
+      color: white;
+    }
+  </style>
+</MySiteLayout>
