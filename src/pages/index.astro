@@ -8,7 +8,9 @@ const productos = await response.json();
 ---
 <MySiteLayout title="Astro Pizzeria">
 	<img src="/public/bg.jpg"  style="width: 100%; object-fit: cover;" alt="">
-	<h1>Bienvenido a Astro Pizzeria</h1>
+	<Pizzas></Pizzas>
+	
+	<h1>Funcionalidad SQL</h1>
 	<p>¡Explora nuestro menú y disfruta de nuestras deliciosas pizzas!</p>
 	<nav style="display: flex; flex-direction: column;">
 		<ul style="display: flex; flex-direction: column; justify-items: start; align-items: center;">
@@ -21,7 +23,7 @@ const productos = await response.json();
 		</ul>
 	  </nav>
 
-	<Pizzas></Pizzas>
+	
 	</MySiteLayout>
 	
 	<style>
