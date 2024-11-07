@@ -7,12 +7,14 @@ const response = await fetch('http://localhost:3001/api/productos');
 const productos = await response.json();
 ---
 <MySiteLayout title="Astro Pizzeria">
+	
 	<img src="/public/bg.jpg" style="width: 100%; object-fit: cover;" alt="">
-  
+	
 	<h1>Inicia Sesión</h1>
-	<p>¡Para poder explorar nuestro menú de funcionalidades y ver nuestras deliciosas pizzas!</p>
+	<p>¡Para poder explorar nuestro menú de funcionalidades de administrador!</p>
 	
 	<div id="login-container" class="login-container">
+
 	  <form id="loginForm">
 		<label for="username">Usuario:</label>
 		<input type="text" id="username" name="username" required />
@@ -26,7 +28,8 @@ const productos = await response.json();
 	</div>
   
 	<div id="menu-container" class="menu-links" style="display: none;">
-	  <p>¡Bienvenido! Ahora puedes explorar el menú:</p>
+		
+	  <p>Hola Admin! que funcion deseas realizar:</p>
 	  <nav style="display: flex; flex-direction: column;">
 		<ul style="display: flex; flex-direction: column; justify-items: start; align-items: center;">
 		  <li><a href="/tablas">a. Visualizar Conjunto de Tablas</a></li>
@@ -37,6 +40,7 @@ const productos = await response.json();
 		  <li><a href="/tabla-filtro">f. Filtro de Tablas</a></li>
 		</ul>
 	  </nav>
+	  <Pizzas></Pizzas>
 	</div>
   
   </MySiteLayout>
