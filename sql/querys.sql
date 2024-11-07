@@ -17,7 +17,7 @@ SELECT table_name,
        data_type,
        nullable
 FROM all_tab_columns
-WHERE table_name IN ('CARGO', 'EMPLEADO')
+WHERE table_name IN ('CARGO','compra', 'producto', 'incluye', 'distribuidor', 'turno','vehiculo', 'sucursal', 'pedido', 'realiza', 'cargoxubicacion', 'cliente')
 ORDER BY table_name, column_id;
 
 
@@ -77,14 +77,14 @@ ORDER BY table_name, column_id;
             
 
             -- filter 5 
-            SELECT 
-                table_name, 
-                COUNT(column_name) AS num_columns
-            FROM 
-                user_tab_columns
-            GROUP BY 
-                table_name
-            HAVING 
-                COUNT(column_name) > 5
-            ORDER BY 
-                table_name
+       SELECT 
+    table_name, 
+    COUNT(column_name) AS num_columns
+FROM 
+    user_tab_columns
+GROUP BY 
+    table_name
+HAVING 
+    COUNT(column_name) = 5
+ORDER BY 
+    table_name;

@@ -40,7 +40,7 @@ app.get('/api/tablas', async (req, res) => {
                 data_type,
                 nullable
             FROM user_tab_columns
-            WHERE table_name IN ('CARGO', 'EMPLEADO')
+            WHERE table_name IN ('CARGO', 'EMPLEADO', 'SUCURSAL', 'PEDIDO', 'producto')
             ORDER BY table_name, column_id
         `;
         
