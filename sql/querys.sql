@@ -17,7 +17,7 @@ SELECT table_name,
        data_type,
        nullable
 FROM all_tab_columns
-WHERE table_name IN ('CARGO','compra', 'producto', 'incluye', 'distribuidor', 'turno','vehiculo', 'sucursal', 'pedido', 'realiza', 'cargoxubicacion', 'cliente')
+WHERE table_name IN ('CARGO', 'EMPLEADO')
 ORDER BY table_name, column_id;
 
 
